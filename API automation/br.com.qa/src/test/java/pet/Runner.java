@@ -1,16 +1,13 @@
 package pet;
-import com.intuit.karate.Results;
-import com.intuit.karate.Runner;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import com.intuit.karate.junit5.Karate;
 
-class account_runner {
 
-	int threads = 1;
+class Runner {
 
-	@Test
-	void testParallel() {
-		Results results = Runner.path("classpath:./").outputCucumberJson(true).karateEnv("dev").parallel(threads);
-		assertTrue(results.getFailCount() == 0, results.getErrorMessages());
-	}
+    @Karate.Test
+    Karate testSystemProperty() {
+        return Karate.run("classpath:./")
+                .tags("tag")
+                .karateEnv("e2e");
+    }
 }
